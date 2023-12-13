@@ -49,7 +49,7 @@ if ( !function_exists( 'imjol_enqueue_assets' ) ) {
         wp_enqueue_script( 'final-countdown', IMJOL_PLUGIN_PATH . 'assets/js/final-countdown.min.js', ['jquery'], null, true );
         wp_enqueue_script( 'nice-select', IMJOL_PLUGIN_PATH . 'assets/js/nice-select.min.js', ['jquery'], null, true );
         wp_enqueue_script( 'custom-js-functions', IMJOL_PLUGIN_PATH . 'assets/js/custom-js-functions.js', [], null, true );
-        wp_enqueue_script( 'imjol-main', IMJOL_PLUGIN_PATH . 'assets/js/main.js', [], null, true );
+        wp_enqueue_script( 'imjol-main', IMJOL_PLUGIN_PATH . 'assets/js/imjol-main.js', ['jquery'], null, true );
         wp_enqueue_script( 'imjol-api', 'https://www.google.com/recaptcha/api.js' );
 
     }
@@ -223,7 +223,7 @@ function imjol_contact_form_shortcode() {
                                                     <div class="form-group formify-mg-top-40">
                                                         <div class="formify-forms__button">
                                                             <button class="formify-btn prev-step">Previous</button>
-                                                            <button class="add_but" id="addFieldButton">Add
+                                                            <button type="button" class="add_but" id="addFieldButton">Add
                                                                 Requirement</button>
                                                             <button class="formify-btn next-step">Next</button>
                                                         </div>

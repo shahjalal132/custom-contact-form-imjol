@@ -3222,7 +3222,7 @@ Formify Layout V7
 .time-dropdown-content a {
 	display: block;
 	padding: 12px 16px;
-	text-decoration: none;
+	text-decoration: none !important;
 	color: #333;
 }
 
@@ -5223,7 +5223,7 @@ Formify Layout V7
 .budget-dropdown-content a {
 	color: black;
 	padding: 12px 16px;
-	text-decoration: none;
+	text-decoration: none !important;
 	display: block;
 	border: 1px solid #ddd;
 }
@@ -5557,6 +5557,7 @@ Formify Layout V7
 	font-size: 16px;
 	min-width: 80px;
 	min-height: 44px;
+	text-decoration: none !important;
 }
 
 .formify-form__nav:before {
