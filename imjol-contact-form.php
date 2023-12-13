@@ -57,6 +57,7 @@ if ( !function_exists( 'imjol_enqueue_assets' ) ) {
     add_action( 'wp_enqueue_scripts', 'imjol_enqueue_assets' );
 }
 
+
 // imjol contact form shortcode
 function imjol_contact_form_shortcode() {
     ob_start()?>
@@ -98,16 +99,16 @@ function imjol_contact_form_shortcode() {
                                             <a class="list-group-item" data-bs-toggle="list" href="#step3"
                                                 role="tab">Step 3</a>
                                             <a class="list-group-item" data-bs-toggle="list" href="#step4"
-                                                role="tab">Page 4</a>
+                                                role="tab">Step 4</a>
                                             <a class="list-group-item" data-bs-toggle="list" href="#step5"
-                                                role="tab">Page 5</a>
+                                                role="tab">Step 5</a>
                                         </div>
 
 
                                         <!-- Form Area -->
                                         <form id="multiStepForm"
                                             class="formify-forms formify-forms__quiz formify-forms__quiz--v5 formify-forms--role-form"
-                                            action="#">
+                                            action="<?php echo $_SERVER['PHP_SELF']; ?> method="post">
                                             <div class="tab-content">
                                                 <!-- Step 1: Personal Information -->
                                                 <div class="tab-pane fade show active" id="step1">
@@ -124,12 +125,13 @@ function imjol_contact_form_shortcode() {
                                                                         class="formify-forms__input formify-forms__input--quiz">
                                                                         <input class="formify-forms__input d-none"
                                                                             type="checkbox" value="Website" id="q-1"
-                                                                            name="q-question">
+                                                                            name="website">
                                                                         <label
                                                                             class="formify-forms__input--quiz-label formify-forms__input--role"
                                                                             for="q-1">
                                                                             <div class="formify-forms__role">
-                                                                                <img src="<?php echo IMJOL_PLUGIN_PATH ?>assets/images/formify-role1.png">
+                                                                                <img
+                                                                                    src="<?php echo IMJOL_PLUGIN_PATH ?>assets/images/formify-role1.png">
                                                                                 <div
                                                                                     class="formify-forms__role-content">
                                                                                     <h4
@@ -149,12 +151,13 @@ function imjol_contact_form_shortcode() {
                                                                         class="formify-forms__input formify-forms__input--quiz">
                                                                         <input class="formify-forms__input d-none"
                                                                             type="checkbox" value="Software" id="q-2"
-                                                                            name="q-question">
+                                                                            name="software">
                                                                         <label
                                                                             class="formify-forms__input--quiz-label formify-forms__input--role"
                                                                             for="q-2">
                                                                             <div class="formify-forms__role">
-                                                                                <img src="<?php echo IMJOL_PLUGIN_PATH ?>assets/images/formify-role2.png">
+                                                                                <img
+                                                                                    src="<?php echo IMJOL_PLUGIN_PATH ?>assets/images/formify-role2.png">
                                                                                 <div
                                                                                     class="formify-forms__role-content">
                                                                                     <h4
@@ -174,12 +177,13 @@ function imjol_contact_form_shortcode() {
                                                                         class="formify-forms__input formify-forms__input--quiz">
                                                                         <input class="formify-forms__input d-none"
                                                                             type="checkbox" value="Mobile Application"
-                                                                            id="q-3" name="q-question">
+                                                                            id="q-3" name="mobile-app">
                                                                         <label
                                                                             class="formify-forms__input--quiz-label formify-forms__input--role"
                                                                             for="q-3">
                                                                             <div class="formify-forms__role">
-                                                                                <img src="<?php echo IMJOL_PLUGIN_PATH ?>assets/images/formify-role3.png">
+                                                                                <img
+                                                                                    src="<?php echo IMJOL_PLUGIN_PATH ?>assets/images/formify-role3.png">
                                                                                 <div
                                                                                     class="formify-forms__role-content">
                                                                                     <h4
@@ -216,14 +220,15 @@ function imjol_contact_form_shortcode() {
                                                             <button class="required">Your Requirement</button>
                                                             <div id="fieldContainer">
                                                                 <textarea
-                                                                    placeholder="Write Your Requirement"></textarea>
+                                                                    placeholder="Write Your Requirement" name="requirement"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group formify-mg-top-40">
                                                         <div class="formify-forms__button">
                                                             <button class="formify-btn prev-step">Previous</button>
-                                                            <button type="button" class="add_but" id="addFieldButton">Add
+                                                            <button type="button" class="add_but"
+                                                                id="addFieldButton">Add
                                                                 Requirement</button>
                                                             <button class="formify-btn next-step">Next</button>
                                                         </div>
@@ -240,7 +245,8 @@ function imjol_contact_form_shortcode() {
                                                                 <!-- Single Group for Multiple Selection (Website) -->
                                                                 <div class="budget-dropdown">
                                                                     <button class="budget-dropdown-button"><img
-                                                                            src="<?php echo IMJOL_PLUGIN_PATH ?>assets/images/img.png" style="width: 4%;">Select
+                                                                            src="<?php echo IMJOL_PLUGIN_PATH ?>assets/images/img.png"
+                                                                            style="width: 4%;">Select
                                                                         Your Budget</button>
                                                                     <div class="budget-dropdown-content">
                                                                         <a href="#"
@@ -286,7 +292,8 @@ function imjol_contact_form_shortcode() {
                                                                 <!-- Single Group for Multiple Selection (Website) -->
                                                                 <div class="time-dropdown">
                                                                     <button class="time-dropdown-button"><img
-                                                                            src="<?php echo IMJOL_PLUGIN_PATH ?>assets/images/img.png" style="width: 4%;">Your
+                                                                            src="<?php echo IMJOL_PLUGIN_PATH ?>assets/images/img.png"
+                                                                            style="width: 4%;">Your
                                                                         Project Deadline</button>
                                                                     <div class="time-dropdown-content">
                                                                         <a href="#" onclick="selectTime('1 Months')">1
@@ -379,7 +386,7 @@ function imjol_contact_form_shortcode() {
                                                                                 class="formify-forms__input formify-forms__textarea">
                                                                                 <label>Whatsapp Number
                                                                                     <span>*</span></label>
-                                                                                <input type="text" name="number"
+                                                                                <input type="text" name="whats-app-number"
                                                                                     placeholder="Whatsapp Number"
                                                                                     required="required">
                                                                             </div>
@@ -407,7 +414,7 @@ function imjol_contact_form_shortcode() {
                                                                         <button
                                                                             class="formify-btn prev-step">Previous</button>
                                                                         <button
-                                                                            class="formify-btn submit-button">Submit</button>
+                                                                            class="formify-btn submit-button" type="submit" id="submit-btn">Submit</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
