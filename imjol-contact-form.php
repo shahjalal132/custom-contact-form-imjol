@@ -48,6 +48,7 @@ if ( !function_exists( 'imjol_enqueue_assets' ) ) {
         wp_enqueue_script( 'imjol-bootstrap', IMJOL_PLUGIN_PATH . 'assets/js/bootstrap.min.js', [], null, true );
         wp_enqueue_script( 'final-countdown', IMJOL_PLUGIN_PATH . 'assets/js/final-countdown.min.js', ['jquery'], null, true );
         wp_enqueue_script( 'nice-select', IMJOL_PLUGIN_PATH . 'assets/js/nice-select.min.js', ['jquery'], null, true );
+        wp_enqueue_script( 'custom-js-functions', IMJOL_PLUGIN_PATH . 'assets/js/custom-js-functions.js', [], null, true );
         wp_enqueue_script( 'imjol-main', IMJOL_PLUGIN_PATH . 'assets/js/main.js', [], null, true );
         wp_enqueue_script( 'imjol-api', 'https://www.google.com/recaptcha/api.js' );
 
@@ -59,17 +60,6 @@ if ( !function_exists( 'imjol_enqueue_assets' ) ) {
 // imjol contact form shortcode
 function imjol_contact_form_shortcode() {
     ob_start()?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="ie-edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Form</title>
-
-</head>
 
 <body data-new-gr-c-s-check-loaded="8.907.0" data-gr-ext-installed="" cz-shortcut-listen="true">
     <div class="body-bg formify-quiz-layout-5">
@@ -443,75 +433,8 @@ function imjol_contact_form_shortcode() {
         src="https://www.gstatic.com/recaptcha/releases/vm_YDiq1BiI3a8zfbIPZjtF2/recaptcha__en.js"
         crossorigin="anonymous" integrity="sha384-jmuBB3ajBz67HkD9EOwlByuyyxCYut7RyJGCbt+luJzVIFeqE/GGKvIVjUTdjP4o">
     </script>
-    <script>
-    $(document).ready(function() {
-        const form = $('#multiStepForm');
-        const steps = form.find('.tab-pane');
-        const links = $('.formify-form__nav a'); // Updated selector to target navigation links
-        const progress = $('.progress-bar');
-        const completionPercent = $('.formify-form__quiz-banner-progress--percent');
 
-        let currentStep = 0;
-
-        function showStep(stepIndex) {
-            steps.removeClass('show active');
-            $(steps[stepIndex]).addClass('show active');
-            links.removeClass('active');
-            $(links[stepIndex]).addClass('active');
-            updateProgress();
-            $('.formify-form__quiz-current').addClass('zoom-out');
-            setTimeout(function() {
-                $('.formify-form__quiz-current').text(stepIndex + 1).removeClass('zoom-out')
-                    .addClass('zoom-in');
-            }, 300);
-            updateCompletionPercent();
-        }
-
-        function updateProgress() {
-            const percent = (currentStep / (steps.length - 1)) * 100;
-            progress.css('width', percent + '%');
-        }
-
-        function updateCompletionPercent() {
-            const percent = ((currentStep + 1) / steps.length) * 100;
-            completionPercent.text(`${percent.toFixed(0)}% Complete`);
-        }
-
-        $('.next-step').click(function(event) {
-            event.preventDefault();
-            currentStep++;
-            if (currentStep < steps.length) {
-                showStep(currentStep);
-            } else {
-                // Handle form submission or completion here
-            }
-        });
-
-
-        $('.prev-step').click(function(event) {
-            event.preventDefault();
-            currentStep--;
-            if (currentStep >= 0) {
-                showStep(currentStep);
-            }
-        });
-
-        links.click(function(event) { // Added click event for navigation links
-            event.preventDefault();
-            const clickedStep = links.index(this);
-            if (clickedStep >= 0 && clickedStep < steps.length) {
-                currentStep = clickedStep;
-                showStep(currentStep);
-            }
-        });
-
-        showStep(currentStep);
-    });
-    </script>
 </body>
-<grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration>
-
-</html>
 
 <?php return ob_get_clean();
 }

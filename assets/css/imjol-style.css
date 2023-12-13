@@ -5526,11 +5526,11 @@ Formify Layout V7
 }
 
 .formify-form__quiz-banner--title {
-	font-size: 60px;
-	font-weight: 700;
-	line-height: 108%;
-	margin-bottom: 30px;
-	color: #fff;
+	font-size: 60px ;
+	font-weight: 700 !important;
+	line-height: 108% !important;
+	margin-bottom: 30px !important;
+	color: #fff !important;
 }
 
 .formify-form__quiz-banner--text {
