@@ -104,7 +104,9 @@ $data = [
 $table_name = $wpdb->prefix . 'imjol_forms';
 
 // Insert data to database
-$wpdb->Insert( $table_name, $data );
+if( !empty( $first_name )){
+    $wpdb->Insert( $table_name, $data );
+}
 
 // Enqueue scripts and styles
 if ( !function_exists( 'imjol_enqueue_assets' ) ) {
