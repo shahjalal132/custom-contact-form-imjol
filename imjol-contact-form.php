@@ -178,7 +178,7 @@ function imjol_contact_form_shortcode() {
 
                                         <!-- Form Area -->
                                         <form id="multiStepForm"
-                                            class="formify-forms formify-forms__quiz formify-forms__quiz--v5 formify-forms--role-form"
+                                            class="formify-forms formify-forms__quiz imjol_form_submit formify-forms__quiz--v5 formify-forms--role-form"
                                             action="<?php echo $_SERVER['PHP_SELF']; ?> method="post">
                                             <div class="tab-content">
                                                 <!-- Step 1: Personal Information -->
