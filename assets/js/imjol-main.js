@@ -116,9 +116,9 @@ document
       e.preventDefault();
 
       // Get form data
-      var software = $('input[name="software"]').val();
-      var website = $('input[name="website"]').val();
-      var mobileApp = $('input[name="mobile-app"]').val();
+      var software = $('input[name="software"]:checked').val();
+      var website = $('input[name="website"]:checked').val();
+      var mobileApp = $('input[name="mobile-app"]:checked').val();
       var requirement = $("#requirement").val();
       var firstName = $('input[name="first-name"]').val();
       var address = $('input[name="address"]').val();
