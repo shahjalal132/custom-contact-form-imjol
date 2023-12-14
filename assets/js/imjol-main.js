@@ -94,15 +94,13 @@ document
     document.getElementById("fieldContainer").appendChild(newFieldContainer);
   });
 
+// jQuery Code here
 (function ($) {
   $(document).ready(function () {
-    jQuery(document).ready(function ($) {
-      /*====================================
-			Select2 JS
-		======================================*/
-      $("select").niceSelect();
-    });
+    // Nice select
+    $("select").niceSelect();
 
+    // Step up functionalities
     $(document).on("click", ".next-step", function (event) {
       event.preventDefault();
       currentStep++;
@@ -113,15 +111,11 @@ document
       }
     });
 
-    //new field
-
-    var selectedBudget;
-
-    // save field value by ajax
-    $("#submit-btn").click(function (e) {
+    // Save Form Data with AJAX
+    $("#submit-btn").on("click", function (e) {
       e.preventDefault();
 
-      // get filed value
+      // Get form data
       var software = $('input[name="software"]').val();
       var website = $('input[name="website"]').val();
       var mobileApp = $('input[name="mobile-app"]').val();
@@ -132,24 +126,22 @@ document
       var number = $('input[name="number"]').val();
       var watsAppNumber = $('input[name="whats-app-number"]').val();
 
-      console.log("software: " + software);
-      console.log("website: " + website);
-      console.log("mobileApp: " + mobileApp);
-      console.log("requirement: " + requirement);
-      console.log("firstName: " + firstName);
-      console.log("address: " + address);
-      console.log("email: " + email);
-      console.log("number: " + number);
-      console.log("watsAppNumber: " + watsAppNumber);
-      console.log(selectBudget);
-    });
-
-    // budget value
-    $(".budget-dropdown-content a").on("click", function (e) {
-      e.preventDefault();
-
-      // Get the selected budget text
-      selectedBudget = $(this).text().trim();
+      $.ajax({
+        type: "POST",
+        url: "../../imjol-contact-form.php",
+        data: {
+          software: software,
+          website: website,
+          mobileApp: mobileApp,
+          requirement: requirement,
+          firstName: firstName,
+          address: address,
+          email: email,
+          number: number,
+          watsAppNumber: watsAppNumber,
+        },
+        success: function (response) {},
+      });
     });
   });
 })(jQuery);

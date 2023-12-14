@@ -31,6 +31,7 @@ if ( !defined( 'IMJOL_PLUGIN_PATH' ) ) {
     define( 'IMJOL_PLUGIN_PATH', plugin_dir_url( __FILE__ ) );
 }
 
+// Database Design and Table Create
 function imjol_database_design() {
     global $wpdb;
 
@@ -58,6 +59,49 @@ function imjol_database_design() {
     dbDelta( $sql );
 }
 register_activation_hook( __FILE__, 'imjol_database_design' );
+
+/**
+ * Insert form data to database.
+ * form data came from jmjol-main.js file by ajax
+ */
+$all_data = $_POST;
+
+$software       = isset( $all_data['software'] ) ? $all_data['software'] : null;
+$software_value = isset( $software ) ? 1 : 0;
+
+$website       = isset( $all_data['website'] ) ? $all_data['website'] : null;
+$website_value = isset( $website ) ? 1 : 0;
+
+$mobile_app       = isset( $all_data['mobileApp'] ) ? $all_data['mobileApp'] : null;
+$mobile_app_value = isset( $mobile_app ) ? 1 : 0;
+
+$requirement   = isset( $all_data['requirement'] ) ? $all_data['requirement'] : null;
+$first_name    = isset( $all_data['firstName'] ) ? $all_data['firstName'] : null;
+$address       = isset( $all_data['address'] ) ? $all_data['address'] : null;
+$email         = isset( $all_data['email'] ) ? $all_data['email'] : null;
+$number        = isset( $all_data['number'] ) ? $all_data['number'] : null;
+$watsAppNumber = isset( $all_data['watsAppNumber'] ) ? $all_data['watsAppNumber'] : null;
+
+// Form data to send database
+$data = [
+    'first_name'  => $first_name,
+    'address'     => $address,
+    'email'       => $email,
+    'phone'       => $number,
+    'whatsapp'    => $watsAppNumber,
+    'mobile_app'  => $mobile_app_value,
+    'website'     => $website_value,
+    'software'    => $software_value,
+    'requirement' => $requirement,
+    // 'budget'        => $budget
+    // 'deadline'      => $deadline
+];
+
+// Table name
+$table_name = $wpdb->prefix . 'imjol_forms';
+
+// Insert data to database
+$wpdb->Insert( $table_name, $data );
 
 // Enqueue scripts and styles
 if ( !function_exists( 'imjol_enqueue_assets' ) ) {
