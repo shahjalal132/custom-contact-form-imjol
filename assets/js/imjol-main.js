@@ -114,5 +114,42 @@ document
     });
 
     //new field
+
+    var selectedBudget;
+
+    // save field value by ajax
+    $("#submit-btn").click(function (e) {
+      e.preventDefault();
+
+      // get filed value
+      var software = $('input[name="software"]').val();
+      var website = $('input[name="website"]').val();
+      var mobileApp = $('input[name="mobile-app"]').val();
+      var requirement = $("#requirement").val();
+      var firstName = $('input[name="first-name"]').val();
+      var address = $('input[name="address"]').val();
+      var email = $('input[name="email"]').val();
+      var number = $('input[name="number"]').val();
+      var watsAppNumber = $('input[name="whats-app-number"]').val();
+
+      console.log("software: " + software);
+      console.log("website: " + website);
+      console.log("mobileApp: " + mobileApp);
+      console.log("requirement: " + requirement);
+      console.log("firstName: " + firstName);
+      console.log("address: " + address);
+      console.log("email: " + email);
+      console.log("number: " + number);
+      console.log("watsAppNumber: " + watsAppNumber);
+      console.log(selectBudget);
+    });
+
+    // budget value
+    $(".budget-dropdown-content a").on("click", function (e) {
+      e.preventDefault();
+
+      // Get the selected budget text
+      selectedBudget = $(this).text().trim();
+    });
   });
 })(jQuery);

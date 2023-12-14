@@ -220,7 +220,8 @@ function imjol_contact_form_shortcode() {
                                                             <button class="required">Your Requirement</button>
                                                             <div id="fieldContainer">
                                                                 <textarea
-                                                                    placeholder="Write Your Requirement" name="requirement"></textarea>
+                                                                    placeholder="Write Your Requirement"
+                                                                    id="requirement" name="requirement"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
