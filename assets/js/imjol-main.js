@@ -112,6 +112,8 @@ document
     });
 
     // Save Form Data with AJAX
+    var selectedBudget;
+    var selectDeadline;
     $("#submit-btn").on("click", function (e) {
       e.preventDefault();
 
@@ -139,6 +141,8 @@ document
           email: email,
           number: number,
           watsAppNumber: watsAppNumber,
+          budget: selectedBudget,
+          deadline: selectDeadline,
         },
         success: function (response) {},
       });
@@ -170,5 +174,20 @@ document
         alert("Please fill all the fields");
       }
     });
+
+    // Budget Dropdown item select
+    $(".budget-dropdown-content a").click(function (e) {
+      e.preventDefault(); // Prevent the default link behavior
+
+      selectedBudget = $(this).text().trim(); // Get the text of the clicked link
+    });
+
+    // Select Dead line
+    $('.time-dropdown-content a').click(function(e) {
+      e.preventDefault(); // Prevent the default link behavior
+  
+      selectDeadline = $(this).text().trim();
+    });
+
   });
 })(jQuery);

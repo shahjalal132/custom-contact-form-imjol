@@ -42,9 +42,9 @@ function imjol_database_design() {
         user_id INT AUTO_INCREMENT,
         first_name VARCHAR(255) NOT NULL,
         address TEXT NOT NULL,
-        email VARCHAR(255) UNIQUE NOT NULL,
-        phone VARCHAR(20) UNIQUE NOT NULL,
-        whatsapp VARCHAR(20) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        phone VARCHAR(20) NOT NULL,
+        whatsapp VARCHAR(20),
         mobile_app TINYINT(1) NOT NULL DEFAULT 0,
         website TINYINT(1) NOT NULL DEFAULT 0,
         software TINYINT(1) NOT NULL DEFAULT 0,
@@ -75,6 +75,9 @@ $website_value = isset( $website ) ? 1 : 0;
 $mobile_app       = isset( $all_data['mobileApp'] ) ? $all_data['mobileApp'] : null;
 $mobile_app_value = isset( $mobile_app ) ? 1 : 0;
 
+$select_budget   = isset( $all_data['budget'] ) ? $all_data['budget'] : null;
+$select_deadline = isset( $all_data['deadline'] ) ? $all_data['deadline'] : null;
+
 $requirement   = isset( $all_data['requirement'] ) ? $all_data['requirement'] : null;
 $first_name    = isset( $all_data['firstName'] ) ? $all_data['firstName'] : null;
 $address       = isset( $all_data['address'] ) ? $all_data['address'] : null;
@@ -93,8 +96,8 @@ $data = [
     'website'     => $website_value,
     'software'    => $software_value,
     'requirement' => $requirement,
-    // 'budget'        => $budget
-    // 'deadline'      => $deadline
+    'budget'      => $select_budget,
+    'deadline'    => $select_deadline,
 ];
 
 // Table name
