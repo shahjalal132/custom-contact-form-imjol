@@ -130,7 +130,7 @@ document
 
       $.ajax({
         type: "POST",
-        url: "../../imjol-contact-form.php",
+        url: "../../inc/database.php",
         data: {
           software: software,
           website: website,
