@@ -1,10 +1,9 @@
-<?php 
+<?php
 /**
  * Form Shortcode
  */
 
-
- // imjol contact form shortcode
+// imjol contact form shortcode
 function imjol_contact_form_shortcode() {
     ob_start()?>
 
@@ -77,7 +76,7 @@ function imjol_contact_form_shortcode() {
                                                                             for="q-1">
                                                                             <div class="formify-forms__role">
                                                                                 <img
-                                                                                    src="<?php echo IMJOL_PLUGIN_URL ?>../assets/images/formify-role1.png">
+                                                                                    src="<?php echo IMJOL_PLUGIN_URL ?>/assets/images/formify-role1.png">
                                                                                 <div
                                                                                     class="formify-forms__role-content">
                                                                                     <h4
@@ -103,7 +102,7 @@ function imjol_contact_form_shortcode() {
                                                                             for="q-2">
                                                                             <div class="formify-forms__role">
                                                                                 <img
-                                                                                    src="<?php echo IMJOL_PLUGIN_URL ?>../assets/images/formify-role2.png">
+                                                                                    src="<?php echo IMJOL_PLUGIN_URL ?>/assets/images/formify-role2.png">
                                                                                 <div
                                                                                     class="formify-forms__role-content">
                                                                                     <h4
@@ -129,7 +128,7 @@ function imjol_contact_form_shortcode() {
                                                                             for="q-5">
                                                                             <div class="formify-forms__role">
                                                                                 <img
-                                                                                    src="<?php echo IMJOL_PLUGIN_URL ?>../assets/images/formify-role3.png">
+                                                                                    src="<?php echo IMJOL_PLUGIN_URL ?>/assets/images/formify-role3.png">
                                                                                 <div
                                                                                     class="formify-forms__role-content">
                                                                                     <h4
@@ -192,7 +191,7 @@ function imjol_contact_form_shortcode() {
                                                                 <!-- Single Group for Multiple Selection (Website) -->
                                                                 <div class="budget-dropdown">
                                                                     <button class="budget-dropdown-button"><img
-                                                                            src="<?php echo IMJOL_PLUGIN_URL ?>../assets/images/img.png"
+                                                                            src="<?php echo IMJOL_PLUGIN_URL ?>/assets/images/img.png"
                                                                             style="width: 4%;">Select
                                                                         Your Budget</button>
                                                                     <div class="budget-dropdown-content">
@@ -239,7 +238,7 @@ function imjol_contact_form_shortcode() {
                                                                 <!-- Single Group for Multiple Selection (Website) -->
                                                                 <div class="time-dropdown">
                                                                     <button class="time-dropdown-button"><img
-                                                                            src="<?php echo IMJOL_PLUGIN_URL ?>../assets/images/img.png"
+                                                                            src="<?php echo IMJOL_PLUGIN_URL ?>/assets/images/img.png"
                                                                             style="width: 4%;">Your
                                                                         Project Deadline</button>
                                                                     <div class="time-dropdown-content">
@@ -361,7 +360,7 @@ function imjol_contact_form_shortcode() {
                                                                         <button
                                                                             class="formify-btn prev-step">Previous</button>
                                                                         <button
-                                                                            class="formify-btn submit-button" type="submit" id="submit-btn">Submit</button>
+                                                                            class="formify-btn submit-button" type="submit" id="submit-btn" name="submit">Submit</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -394,3 +393,26 @@ function imjol_contact_form_shortcode() {
 }
 
 add_shortcode( 'imjol-contact-form-shortcode', 'imjol_contact_form_shortcode' );
+
+// Mail Functionality
+if ( $_SERVER['REQUEST_METHOD'] === 'POST' && isset( $_POST['submit'] ) ) {
+    // Form has been submitted, process and send email
+    $name  = sanitize_text_field( $_POST['first-name'] );
+    $email = sanitize_email( $_POST['email'] );
+
+    // Send email
+    my_send_email_function( $name, $email );
+}
+
+function my_send_email_function( $name, $email, $message = '' ) {
+    $to      = 'ffshahjalal@gmail.com';
+    $subject = 'New Form Submission';
+    $headers = [ 'Content-Type: text/html; charset=UTF-8' ];
+
+    $body = "Name: $name<br>";
+    $body .= "Email: $email<br>";
+    $body .= "Message: $message<br>";
+
+    // Send email
+    wp_mail( $to, $subject, $body, $headers );
+}

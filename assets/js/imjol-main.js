@@ -130,7 +130,7 @@ document
 
       $.ajax({
         type: "POST",
-        url: "../../inc/database.php",
+        url: "../inc/database.php",
         data: {
           software: software,
           website: website,

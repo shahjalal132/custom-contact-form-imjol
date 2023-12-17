@@ -164,6 +164,7 @@ function show_all_user_infos() {
     }
 }
 
+
 // Requiring plugin files
 require_once IMJOL_PLUGIN_PATH . '/inc/form_shortcode.php';
 require_once IMJOL_PLUGIN_PATH . '/inc/enqueue_assets.php';

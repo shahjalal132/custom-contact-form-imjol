@@ -8275,6 +8275,20 @@ Formify Layout V7
 	}
 }
 
+.required {
+    background-color: #007BFF !important;
+    color: white;
+    padding: 10px 20px !important;
+    border: none;
+    margin-bottom: 10px !important;
+	width: 100% !important;
+}
+
+.budget-dropdown-button,
+.time-dropdown-button{
+	width: 100% !important;
+}
+
 /*======================================
 	End Coming Soon Form
 ========================================*/
