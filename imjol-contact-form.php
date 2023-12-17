@@ -103,6 +103,7 @@ function show_all_user_infos() {
                                         <th>Email</th>
                                         <th>Phone</th>
                                         <th>What's App</th>
+                                        <th>Mobile App</th>
                                         <th>Website</th>
                                         <th>Software</th>
                                         <th>Requirements</th>
@@ -113,37 +114,26 @@ function show_all_user_infos() {
                                 <tbody>
                                     <tr>
                                         <?php 
-                                            while($imjol_user_data->have_posts()) : $imjol_user_data->the_post();
-
-                                            // get table field data
-                                            $user_id = $imjol_user_data->user_id;
-                                            $first_name = $imjol_user_data->first_name;
-                                            $address = $imjol_user_data->address;
-                                            $email = $imjol_user_data->email;
-                                            $phone = $imjol_user_data->phone;
-                                            $whatsapp = $imjol_user_data->whatsapp;
-                                            $mobile_app = $imjol_user_data->mobile_app;
-                                            $website = $imjol_user_data->website;
-                                            $software = $imjol_user_data->software;
-                                            $requirement = $imjol_user_data->requirement;
-                                            $budget = $imjol_user_data->budget;
-                                            $deadline = $imjol_user_data->deadline;
-                                        ?>
-                                                <td> <?php echo $user_id; ?> </td>
-                                                <td> <?php echo $first_name; ?> </td>
-                                                <td> <?php echo $address; ?> </td>
-                                                <td> <?php echo $email; ?> </td>
-                                                <td> <?php echo $phone; ?> </td>
-                                                <td> <?php echo $whatsapp; ?> </td>
-                                                <td> <?php echo $mobile_app; ?> </td>
-                                                <td> <?php echo $website; ?> </td>
-                                                <td> <?php echo $software; ?> </td>
-                                                <td> <?php echo $requirement; ?> </td>
-                                                <td> <?php echo $budget; ?> </td>
-                                                <td> <?php echo $deadline; ?> </td>
-                                            <?php
-                                            endwhile;
-                                        ?>
+                                            global $wpdb;
+                                            $query = "SELECT * FROM `{$wpdb->prefix}imjol_forms`";
+                                            $results = $wpdb->get_results($query);
+                                            if($results){
+                                                foreach($results as $result){
+                                                    echo '<td>'.$result->user_id.'</td>';
+                                                    echo '<td>'.$result->first_name.'</td>';
+                                                    echo '<td>'.$result->address.'</td>';
+                                                    echo '<td>'.$result->email.'</td>';
+                                                    echo '<td>'.$result->phone.'</td>';
+                                                    echo '<td>'.$result->whatsapp.'</td>';
+                                                    echo '<td>'.$result->mobile_app.'</td>';
+                                                    echo '<td>'.$result->website.'</td>';
+                                                    echo '<td>'.$result->software.'</td>';
+                                                    echo '<td>'.$result->requirement.'</td>';
+                                                    echo '<td>'.$result->budget.'</td>';
+                                                    echo '<td>'.$result->deadline.'</td>';
+                                                }
+                                            }
+                                         ?>
                                     </tr>
                                 </tbody>
                             </table>
