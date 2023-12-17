@@ -78,6 +78,7 @@ function show_all_user_infos() {
         20
     );
 
+    // Display users information's table
     function show_all_users_infos_html() {
         ?>
             <div id="user-infos-table">
