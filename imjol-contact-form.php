@@ -36,6 +36,35 @@ if ( !defined( 'IMJOL_PLUGIN_URL' ) ) {
     define( 'IMJOL_PLUGIN_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 }
 
+// Create Database When Plugin Activated
+function imjol_database_design() {
+    global $wpdb;
+
+    $table_name      = $wpdb->prefix . 'imjol_forms';
+    $charset_collate = $wpdb->get_charset_collate();
+
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+        user_id INT AUTO_INCREMENT,
+        first_name VARCHAR(255) NOT NULL,
+        address TEXT NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        phone VARCHAR(20) NOT NULL,
+        whatsapp VARCHAR(20),
+        mobile_app TINYINT(1) NOT NULL DEFAULT 0,
+        website TINYINT(1) NOT NULL DEFAULT 0,
+        software TINYINT(1) NOT NULL DEFAULT 0,
+        requirement TEXT,
+        budget VARCHAR(255),
+        deadline VARCHAR(255),
+
+        PRIMARY KEY (user_id)
+    ) $charset_collate;";
+
+    require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+    dbDelta( $sql );
+}
+register_activation_hook( __FILE__, 'imjol_database_design' );
+
 // Requiring plugin files
 require_once IMJOL_PLUGIN_PATH . '/inc/form_shortcode.php';
 require_once IMJOL_PLUGIN_PATH . '/inc/enqueue_assets.php';

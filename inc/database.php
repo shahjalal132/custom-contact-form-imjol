@@ -1,37 +1,7 @@
-<?php 
+<?php
 /**
  * All Databases related functions here
  */
-
- // Database Design and Table Create
-function imjol_database_design() {
-    global $wpdb;
-
-    $table_name      = $wpdb->prefix . 'imjol_forms';
-    $charset_collate = $wpdb->get_charset_collate();
-
-    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
-        user_id INT AUTO_INCREMENT,
-        first_name VARCHAR(255) NOT NULL,
-        address TEXT NOT NULL,
-        email VARCHAR(255) NOT NULL,
-        phone VARCHAR(20) NOT NULL,
-        whatsapp VARCHAR(20),
-        mobile_app TINYINT(1) NOT NULL DEFAULT 0,
-        website TINYINT(1) NOT NULL DEFAULT 0,
-        software TINYINT(1) NOT NULL DEFAULT 0,
-        requirement TEXT,
-        budget VARCHAR(255),
-        deadline VARCHAR(255),
-
-        PRIMARY KEY (user_id)
-    ) $charset_collate;";
-
-    require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-    dbDelta( $sql );
-}
-register_activation_hook( __FILE__, 'imjol_database_design' );
-
 
 /**
  * Insert form data to database.
@@ -58,25 +28,105 @@ $email         = isset( $all_data['email'] ) ? $all_data['email'] : null;
 $number        = isset( $all_data['number'] ) ? $all_data['number'] : null;
 $watsAppNumber = isset( $all_data['watsAppNumber'] ) ? $all_data['watsAppNumber'] : null;
 
-// Form data to send database
-$data = [
-    'first_name'  => $first_name,
-    'address'     => $address,
-    'email'       => $email,
-    'phone'       => $number,
-    'whatsapp'    => $watsAppNumber,
-    'mobile_app'  => $mobile_app_value,
-    'website'     => $website_value,
-    'software'    => $software_value,
-    'requirement' => $requirement,
-    'budget'      => $select_budget,
-    'deadline'    => $select_deadline,
-];
+// Form Validation
+/* function is_required( $field ) {
+    return empty( trim( $field ) );
+}
+
+function is_valid_email( $email ) {
+    return filter_var( $email, FILTER_VALIDATE_EMAIL );
+}
+
+function is_valid_number( $number ) {
+    return is_numeric( $number );
+}
+
+$errors = []; // Store any validation errors
+
+// Required fields
+if ( is_required( $software ) ) {
+    $errors['software'] = 'Software field is required.';
+}
+if ( is_required( $website ) ) {
+    $errors['website'] = 'Website field is required.';
+}
+if ( is_required( $requirement ) ) {
+    $errors['requirement'] = 'Requirement field is required.';
+}
+if ( is_required( $first_name ) ) {
+    $errors['first_name'] = 'First name field is required.';
+}
+if ( is_required( $address ) ) {
+    $errors['address'] = 'Address field is required.';
+}
+if ( is_required( $email ) ) {
+    $errors['email'] = 'Email field is required.';
+}
+if ( is_required( $number ) ) {
+    $errors['phone'] = 'Phone number field is required.';
+}
+
+// Additional validations
+if ( !is_valid_email( $email ) ) {
+    $errors['email_address'] = 'Please enter a valid email address.';
+}
+if ( !is_valid_number( $number ) ) {
+    $errors['phone_number'] = 'Please enter a valid phone number.';
+}
+if ( !is_valid_number( $watsAppNumber ) ) {
+    $errors['watsApp_number'] = 'Please enter a valid phone number.';
+}
+
+// Additional validations as needed for mobile app, budget, deadline, etc.
+
+// Check for errors
+if ( !empty( $errors ) ) {
+    // Show error message(s) to the user
+    // You can use `wp_die` or return the errors array for later display
+    wp_die( 'Please fix the following errors: ' . implode( '<br>', $errors ) );
+} else {
+    // Form data to send database
+    $data = [
+        'first_name'  => $first_name,
+        'address'     => $address,
+        'email'       => $email,
+        'phone'       => $number,
+        'whatsapp'    => $watsAppNumber,
+        'mobile_app'  => $mobile_app_value,
+        'website'     => $website_value,
+        'software'    => $software_value,
+        'requirement' => $requirement,
+        'budget'      => $select_budget,
+        'deadline'    => $select_deadline,
+    ];
 
 // Table name
-$table_name = $wpdb->prefix . 'imjol_forms';
+    $table_name = $wpdb->prefix . 'imjol_forms';
 
 // Insert data to database
-if( !empty( $first_name )){
-    $wpdb->Insert( $table_name, $data );
-}
+    if ( !empty( $first_name ) ) {
+        $wpdb->Insert( $table_name, $data );
+    }
+} */
+    // Form data to send database
+    $data = [
+        'first_name'  => $first_name,
+        'address'     => $address,
+        'email'       => $email,
+        'phone'       => $number,
+        'whatsapp'    => $watsAppNumber,
+        'mobile_app'  => $mobile_app_value,
+        'website'     => $website_value,
+        'software'    => $software_value,
+        'requirement' => $requirement,
+        'budget'      => $select_budget,
+        'deadline'    => $select_deadline,
+    ];
+
+// Table name
+    $table_name = $wpdb->prefix . 'imjol_forms';
+
+// Insert data to database
+    if ( !empty( $first_name ) ) {
+        $wpdb->Insert( $table_name, $data );
+    }
