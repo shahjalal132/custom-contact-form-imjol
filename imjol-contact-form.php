@@ -95,6 +95,18 @@ function show_all_user_infos() {
                     if($imjol_user_data->have_posts()) {
                         ?>
                             <table>
+                                <style>
+                                    table, th, td {
+                                    border: 1px solid black;
+                                    border-collapse: collapse;
+                                    }
+                                    th, td {
+                                    padding-top: 10px;
+                                    padding-bottom: 10px;
+                                    padding-left: 20px;
+                                    padding-right: 20px;
+                                    }
+                                </style>
                                 <thead>
                                     <tr>
                                         <th>User ID</th>
@@ -112,29 +124,32 @@ function show_all_user_infos() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
                                         <?php 
                                             global $wpdb;
                                             $query = "SELECT * FROM `{$wpdb->prefix}imjol_forms`";
                                             $results = $wpdb->get_results($query);
                                             if($results){
                                                 foreach($results as $result){
+                                                    $need_app = $result->mobile_app == 1 ? 'Yes' : 'No';
+                                                    $need_website = $result->website == 1 ? 'Yes' : 'No';
+                                                    $need_software = $result->software == 1 ? 'Yes' : 'No';
+                                                    echo '<tr>';
                                                     echo '<td>'.$result->user_id.'</td>';
                                                     echo '<td>'.$result->first_name.'</td>';
                                                     echo '<td>'.$result->address.'</td>';
                                                     echo '<td>'.$result->email.'</td>';
                                                     echo '<td>'.$result->phone.'</td>';
                                                     echo '<td>'.$result->whatsapp.'</td>';
-                                                    echo '<td>'.$result->mobile_app.'</td>';
-                                                    echo '<td>'.$result->website.'</td>';
-                                                    echo '<td>'.$result->software.'</td>';
+                                                    echo '<td>'. $need_app .'</td>';
+                                                    echo '<td>'.$need_website.'</td>';
+                                                    echo '<td>'.$need_software.'</td>';
                                                     echo '<td>'.$result->requirement.'</td>';
                                                     echo '<td>'.$result->budget.'</td>';
                                                     echo '<td>'.$result->deadline.'</td>';
+                                                    echo '</tr>';
                                                 }
                                             }
                                          ?>
-                                    </tr>
                                 </tbody>
                             </table>
                         <?php                    
