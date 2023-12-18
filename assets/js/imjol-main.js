@@ -188,33 +188,6 @@ document
       });
     });
 
-    // Display Error message
-    $("#submit-btn").on("click", function (e) {
-      e.preventDefault();
-
-      // Get form data
-      var software = $('input[name="software"]:checked').val();
-      var website = $('input[name="website"]:checked').val();
-      var mobileApp = $('input[name="mobile-app"]:checked').val();
-      var requirement = $("#requirement").val();
-      var firstName = $('input[name="first-name"]').val();
-      var address = $('input[name="address"]').val();
-      var email = $('input[name="email"]').val();
-      var number = $('input[name="number"]').val();
-      var watsAppNumber = $('input[name="whats-app-number"]').val();
-
-      if (
-        requirement === "" ||
-        firstName === "" ||
-        address === "" ||
-        email === "" ||
-        number === "" ||
-        watsAppNumber === ""
-      ) {
-        alert("Please fill all the fields");
-      }
-    });
-
     // Budget Dropdown item select
     $(".budget-dropdown-content a").click(function (e) {
       e.preventDefault(); // Prevent the default link behavior
