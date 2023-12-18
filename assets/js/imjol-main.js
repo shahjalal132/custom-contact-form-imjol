@@ -75,12 +75,13 @@ document.addEventListener("DOMContentLoaded", function () {
 document
   .getElementById("addFieldButton")
   .addEventListener("click", function () {
-    console.log("addFieldButton clicked");
     var newFieldContainer = document.createElement("div");
 
     var newField = document.createElement("textarea");
     newField.type = "textarea";
     newField.placeholder = "Write Your Requirement?";
+    // newField.name = "requirement";
+    newField.classList.add("custom-requirement-field");
 
     var removeButton = document.createElement("button");
     removeButton.textContent = "Remove";
