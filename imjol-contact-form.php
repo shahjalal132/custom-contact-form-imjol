@@ -70,12 +70,12 @@ add_action( 'admin_menu', 'show_all_user_infos' );
 function show_all_user_infos() {
     add_menu_page(
         'all_users_infos',
-        'All Users Infos',
+        'Imjol Users Requirements',
         'manage_options',
         'all_users_infos',
         'show_all_users_infos_html',
         'dashicons-admin-users',
-        20
+        30
     );
 
     // Display users information's table
