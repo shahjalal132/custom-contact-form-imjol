@@ -359,6 +359,8 @@ function imjol_contact_form_shortcode() {
                                                                     <div class="formify-forms__button">
                                                                         <button
                                                                             class="formify-btn prev-step">Previous</button>
+                                                                            <p class="success-message">Thank you! form submitted successfully</p>
+                                                                            <p class="error-message">Please fill up all required fields</p>
                                                                         <button
                                                                             class="formify-btn submit-button" type="submit" id="submit-btn" name="submit">Submit</button>
                                                                     </div>
