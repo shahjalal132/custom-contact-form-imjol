@@ -129,6 +129,20 @@ document
       var number = $('input[name="number"]').val();
       var watsAppNumber = $('input[name="whats-app-number"]').val();
 
+      // Custom requirement field value get conditionally
+      var newRequirement = $(".custom-requirement-field").val();
+      var toUseNewRequirement = newRequirement !== "" ? newRequirement : null;
+
+      // Custom budget field value get conditionally
+      var customBudgetPlanner = $("#budget_planer_custom_field").val();
+      var toUseCustomBudgetPlanner =
+        customBudgetPlanner !== "" ? customBudgetPlanner : null;
+
+      // Custom deadline field value get conditionally
+      var customProjectDeadline = $("#project_deadline_custom_field").val();
+      var toUseCustomProjectDeadline =
+        customProjectDeadline !== "" ? customProjectDeadline : null;
+
       $.ajax({
         type: "POST",
         url: "../inc/database.php",
@@ -137,13 +151,16 @@ document
           website: website,
           mobileApp: mobileApp,
           requirement: requirement,
+          newRequirement: toUseNewRequirement, // added newRequirement
           firstName: firstName,
           address: address,
           email: email,
           number: number,
           watsAppNumber: watsAppNumber,
           budget: selectedBudget,
+          customBudget: toUseCustomBudgetPlanner, // added customBudget
           deadline: selectDeadline,
+          customProjectDeadline: toUseCustomProjectDeadline, // added customProjectDeadline
         },
         success: function (response) {},
       });
@@ -184,11 +201,10 @@ document
     });
 
     // Select Dead line
-    $('.time-dropdown-content a').click(function(e) {
+    $(".time-dropdown-content a").click(function (e) {
       e.preventDefault(); // Prevent the default link behavior
-  
+
       selectDeadline = $(this).text().trim();
     });
-
   });
 })(jQuery);

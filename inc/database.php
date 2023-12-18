@@ -18,10 +18,20 @@ $website_value = isset( $website ) ? 1 : 0;
 $mobile_app       = isset( $all_data['mobileApp'] ) ? $all_data['mobileApp'] : null;
 $mobile_app_value = isset( $mobile_app ) ? 1 : 0;
 
+$customBudget    = isset( $all_data['customBudget'] ) ? $all_data['customBudget'] : null;
 $select_budget   = isset( $all_data['budget'] ) ? $all_data['budget'] : null;
-$select_deadline = isset( $all_data['deadline'] ) ? $all_data['deadline'] : null;
+$fullBudget      = $customBudget . $select_budget;
+$cleanFullBudget = str_replace( 'Budget', '', $fullBudget );
 
-$requirement   = isset( $all_data['requirement'] ) ? $all_data['requirement'] : null;
+$customDeadline    = isset( $all_data['customProjectDeadline'] ) ? $all_data['customProjectDeadline'] : null;
+$select_deadline   = isset( $all_data['deadline'] ) ? $all_data['deadline'] : null;
+$fullDeadline      = $customDeadline . $select_deadline;
+$cleanFullDeadline = str_replace( 'Preferred', '', $fullDeadline );
+
+$requirement     = isset( $all_data['requirement'] ) ? $all_data['requirement'] : null;
+$newRequirement  = isset( $all_data['newRequirement'] ) ? $all_data['newRequirement'] : null;
+$fullRequirement = $requirement . ', ' . $newRequirement;
+
 $first_name    = isset( $all_data['firstName'] ) ? $all_data['firstName'] : null;
 $address       = isset( $all_data['address'] ) ? $all_data['address'] : null;
 $email         = isset( $all_data['email'] ) ? $all_data['email'] : null;
@@ -30,103 +40,103 @@ $watsAppNumber = isset( $all_data['watsAppNumber'] ) ? $all_data['watsAppNumber'
 
 // Form Validation
 /* function is_required( $field ) {
-    return empty( trim( $field ) );
+return empty( trim( $field ) );
 }
 
 function is_valid_email( $email ) {
-    return filter_var( $email, FILTER_VALIDATE_EMAIL );
+return filter_var( $email, FILTER_VALIDATE_EMAIL );
 }
 
 function is_valid_number( $number ) {
-    return is_numeric( $number );
+return is_numeric( $number );
 }
 
 $errors = []; // Store any validation errors
 
 // Required fields
 if ( is_required( $software ) ) {
-    $errors['software'] = 'Software field is required.';
+$errors['software'] = 'Software field is required.';
 }
 if ( is_required( $website ) ) {
-    $errors['website'] = 'Website field is required.';
+$errors['website'] = 'Website field is required.';
 }
 if ( is_required( $requirement ) ) {
-    $errors['requirement'] = 'Requirement field is required.';
+$errors['requirement'] = 'Requirement field is required.';
 }
 if ( is_required( $first_name ) ) {
-    $errors['first_name'] = 'First name field is required.';
+$errors['first_name'] = 'First name field is required.';
 }
 if ( is_required( $address ) ) {
-    $errors['address'] = 'Address field is required.';
+$errors['address'] = 'Address field is required.';
 }
 if ( is_required( $email ) ) {
-    $errors['email'] = 'Email field is required.';
+$errors['email'] = 'Email field is required.';
 }
 if ( is_required( $number ) ) {
-    $errors['phone'] = 'Phone number field is required.';
+$errors['phone'] = 'Phone number field is required.';
 }
 
 // Additional validations
 if ( !is_valid_email( $email ) ) {
-    $errors['email_address'] = 'Please enter a valid email address.';
+$errors['email_address'] = 'Please enter a valid email address.';
 }
 if ( !is_valid_number( $number ) ) {
-    $errors['phone_number'] = 'Please enter a valid phone number.';
+$errors['phone_number'] = 'Please enter a valid phone number.';
 }
 if ( !is_valid_number( $watsAppNumber ) ) {
-    $errors['watsApp_number'] = 'Please enter a valid phone number.';
+$errors['watsApp_number'] = 'Please enter a valid phone number.';
 }
 
 // Additional validations as needed for mobile app, budget, deadline, etc.
 
 // Check for errors
 if ( !empty( $errors ) ) {
-    // Show error message(s) to the user
-    // You can use `wp_die` or return the errors array for later display
-    wp_die( 'Please fix the following errors: ' . implode( '<br>', $errors ) );
+// Show error message(s) to the user
+// You can use `wp_die` or return the errors array for later display
+wp_die( 'Please fix the following errors: ' . implode( '<br>', $errors ) );
 } else {
-    // Form data to send database
-    $data = [
-        'first_name'  => $first_name,
-        'address'     => $address,
-        'email'       => $email,
-        'phone'       => $number,
-        'whatsapp'    => $watsAppNumber,
-        'mobile_app'  => $mobile_app_value,
-        'website'     => $website_value,
-        'software'    => $software_value,
-        'requirement' => $requirement,
-        'budget'      => $select_budget,
-        'deadline'    => $select_deadline,
-    ];
+// Form data to send database
+$data = [
+'first_name'  => $first_name,
+'address'     => $address,
+'email'       => $email,
+'phone'       => $number,
+'whatsapp'    => $watsAppNumber,
+'mobile_app'  => $mobile_app_value,
+'website'     => $website_value,
+'software'    => $software_value,
+'requirement' => $requirement,
+'budget'      => $select_budget,
+'deadline'    => $select_deadline,
+];
 
 // Table name
-    $table_name = $wpdb->prefix . 'imjol_forms';
+$table_name = $wpdb->prefix . 'imjol_forms';
 
 // Insert data to database
-    if ( !empty( $first_name ) ) {
-        $wpdb->Insert( $table_name, $data );
-    }
+if ( !empty( $first_name ) ) {
+$wpdb->Insert( $table_name, $data );
+}
 } */
-    // Form data to send database
-    $data = [
-        'first_name'  => $first_name,
-        'address'     => $address,
-        'email'       => $email,
-        'phone'       => $number,
-        'whatsapp'    => $watsAppNumber,
-        'mobile_app'  => $mobile_app_value,
-        'website'     => $website_value,
-        'software'    => $software_value,
-        'requirement' => $requirement,
-        'budget'      => $select_budget,
-        'deadline'    => $select_deadline,
-    ];
+// Form data to send database
+$data = [
+    'first_name'  => $first_name,
+    'address'     => $address,
+    'email'       => $email,
+    'phone'       => $number,
+    'whatsapp'    => $watsAppNumber,
+    'mobile_app'  => $mobile_app_value,
+    'website'     => $website_value,
+    'software'    => $software_value,
+    'requirement' => $fullRequirement,
+    'budget'      => $cleanFullBudget,
+    'deadline'    => $cleanFullDeadline,
+];
 
 // Table name
-    $table_name = $wpdb->prefix . 'imjol_forms';
+$table_name = $wpdb->prefix . 'imjol_forms';
 
 // Insert data to database
-    if ( !empty( $first_name ) ) {
-        $wpdb->Insert( $table_name, $data );
-    }
+if ( !empty( $first_name ) ) {
+    $wpdb->Insert( $table_name, $data );
+}
