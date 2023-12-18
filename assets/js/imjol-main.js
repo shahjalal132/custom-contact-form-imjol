@@ -191,6 +191,8 @@ document
       e.preventDefault();
 
       clearInputField();
+
+      alert("Successfully submitted");
     });
 
     // Budget Dropdown item select
