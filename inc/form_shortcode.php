@@ -209,7 +209,7 @@ function imjol_contact_form_shortcode() {
                                                                             Planner</a>
                                                                     </div>
                                                                     <div class="custom-field-input">
-                                                                        <textarea id="customField"
+                                                                        <textarea id="budget_planer_custom_field"
                                                                             placeholder="Write Your Budget"></textarea>
                                                                     </div>
                                                                 </div>
@@ -254,7 +254,7 @@ function imjol_contact_form_shortcode() {
                                                                     </div>
                                                                     <div class="custom-field"
                                                                         style="display: none; margin-top: 10px;">
-                                                                        <textarea id="custom"
+                                                                        <textarea id="project_deadline_custom_field"
                                                                             placeholder="Write Your Project Deadline"></textarea>
                                                                     </div>
                                                                 </div>

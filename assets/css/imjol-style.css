@@ -8289,6 +8289,21 @@ Formify Layout V7
 	width: 100% !important;
 }
 
+button {
+    color: #ffffff !important;
+    border-radius: 3px;
+    padding: 0px;
+    line-height: initial;
+    width: 100%;
+    height: 50px;
+    background: #fe4c1c;
+    border: 1px solid #E4F2FF;
+}
+
+.list-group.formify-form__nav{
+	text-align: center !important;
+}
+
 /*======================================
 	End Coming Soon Form
 ========================================*/
