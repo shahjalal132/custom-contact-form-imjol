@@ -138,9 +138,15 @@ document
       ) {
         $(".error-message").fadeIn();
         $(".success-message").fadeOut();
+        setTimeout(() => {
+          $(".error-message").fadeOut();
+        }, 2000);
       } else {
         $(".success-message").fadeIn();
         $(".error-message").fadeOut();
+        setTimeout(() => {
+          $(".success-message").fadeOut();
+        }, 2000);
       }
     });
 
