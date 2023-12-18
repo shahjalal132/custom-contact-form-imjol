@@ -112,30 +112,11 @@ document
       }
     });
 
-    // Clear form field value after form submit
-    // Define the clearInputField function
-    function clearInputField() {
-      console.log("cleaning input field");
-      // Clear the input fields
-      $('input[name="software"]').prop("checked", false);
-      $('input[name="website"]').prop("checked", false);
-      $('input[name="mobile-app"]').prop("checked", false);
-      $("#requirement").val("");
-      $('input[name="first-name"]').val("");
-      $('input[name="address"]').val("");
-      $('input[name="email"]').val("");
-      $('input[name="number"]').val("");
-      $('input[name="whats-app-number"]').val("");
-      $(".custom-requirement-field").val("");
-      $("#budget_planer_custom_field").val("");
-      $("#project_deadline_custom_field").val("");
-    }
-
     // Save Form Data with AJAX
     var selectedBudget;
     var selectDeadline;
     $("#submit-btn").on("click", function (e) {
-      // e.preventDefault();
+      e.preventDefault();
 
       // Get form data
       var software = $('input[name="software"]:checked').val();
@@ -183,9 +164,33 @@ document
         },
         success: function (response) {
           // Clear form data
-          clearInputField();
         },
       });
+    });
+
+    // Clear form field value after form submit
+    // Define the clearInputField function
+    function clearInputField() {
+      console.log("cleaning input field");
+      // Clear the input fields
+      $('input[name="software"]').prop("checked", false);
+      $('input[name="website"]').prop("checked", false);
+      $('input[name="mobile-app"]').prop("checked", false);
+      $("#requirement").val("");
+      $('input[name="first-name"]').val("");
+      $('input[name="address"]').val("");
+      $('input[name="email"]').val("");
+      $('input[name="number"]').val("");
+      $('input[name="whats-app-number"]').val("");
+      $(".custom-requirement-field").val("");
+      $("#budget_planer_custom_field").val("");
+      $("#project_deadline_custom_field").val("");
+    }
+
+    $("#submit-btn").click(function (e) {
+      e.preventDefault();
+
+      clearInputField();
     });
 
     // Budget Dropdown item select
