@@ -205,7 +205,7 @@ function imjol_contact_form_shortcode() {
                                                                             onclick="selectBudget('40k - 50k')">40k -
                                                                             50k</a>
                                                                         <a href="#"
-                                                                            onclick="selectBudget('Budget Planner')">Budget
+                                                                            onclick="selectBudget('Budget')">Budget
                                                                             Planner</a>
                                                                     </div>
                                                                     <div class="custom-field-input">
@@ -249,7 +249,7 @@ function imjol_contact_form_shortcode() {
                                                                         <a href="#" onclick="selectTime('3 Months')">3
                                                                             Months</a>
                                                                         <a href="#"
-                                                                            onclick="selectTime('Preferred Project Duration')">Preferred
+                                                                            onclick="selectTime('Duration')">Preferred
                                                                             Project Duration</a>
                                                                     </div>
                                                                     <div class="custom-field"

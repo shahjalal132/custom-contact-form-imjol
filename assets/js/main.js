@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function selectBudget(budget) {
     document.querySelector(".budget-dropdown-button").textContent = budget;
-    if (budget === 'Budget Planner') {
+    if (budget === 'Budget') {
         document.querySelector(".custom-field-input").style.display = "block";
     } else {
         document.querySelector(".custom-field-input").style.display = "none";
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function selectTime(option) {
     var customFieldInput = document.querySelector(".custom-field");
     document.querySelector(".time-dropdown-button").textContent = option;
-    if (option === 'Preferred Project Duration') {
+    if (option === 'Duration') {
         customFieldInput.style.display = "block";
     } else {
         customFieldInput.style.display = "none";

@@ -22,7 +22,7 @@ $customDeadline    = isset( $all_data['customProjectDeadline'] ) ? $all_data['cu
 $select_deadline   = isset( $all_data['deadline'] ) ? $all_data['deadline'] : null;
 $fullDeadline      = $customDeadline . $select_deadline;
 $trimDeadline = trim($fullDeadline);
-$cleanFullDeadline = str_replace( 'Preferred Project Duration', '', $trimDeadline );
+$cleanFullDeadline = str_replace( 'Preferred Project Duration', '', $trimDeadline, 3 );
 
 $requirement     = isset( $all_data['requirement'] ) ? $all_data['requirement'] : null;
 $newRequirement  = isset( $all_data['newRequirement'] ) ? $all_data['newRequirement'] : null;
@@ -33,6 +33,13 @@ $address       = isset( $all_data['address'] ) ? $all_data['address'] : null;
 $email         = isset( $all_data['email'] ) ? $all_data['email'] : null;
 $number        = isset( $all_data['number'] ) ? $all_data['number'] : null;
 $watsAppNumber = isset( $all_data['watsAppNumber'] ) ? $all_data['watsAppNumber'] : null;
+
+// Get the admin username dynamically
+$admin_users = get_users(array('role' => 'administrator'));
+$admin_username = !empty($admin_users) ? $admin_users[0]->user_login : 'Admin';
+
+// Get the admin email dynamically
+$admin_email = get_option('admin_email');
 
 $data = [
     'first_name'  => $first_name,
@@ -58,9 +65,9 @@ if ( !empty( $first_name ) ) {
     // Check if the data was successfully inserted and send an email
     if ( $wpdb->insert_id ) {
         // Send email
-        $to      = 'ffshahjalal@gmail.com'; // Replace with your email address
-        $subject = 'New Form Submission';
-        $message = "Hello, Admin. A new form submission has been received from $first_name. Here is the information:\r\n" .
+        $to      = $admin_email; 
+        $subject = 'New Form Submission from - ' . $first_name;
+        $message = "A new form submission has been received from $first_name. Here is the information:\r\n" .
             "Name: $first_name\r\n" .
             "Email: $email\r\n" .
             "Address: $address\r\n" .
