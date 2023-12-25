@@ -63,7 +63,22 @@ function imjol_database_design() {
     require_once ABSPATH . 'wp-admin/includes/upgrade.php';
     dbDelta( $sql );
 }
+// create table when plugin activate
 register_activation_hook( __FILE__, 'imjol_database_design' );
+
+// Drop Database When Plugin Deactivated
+function imjol_drop_database() {
+    global $wpdb;
+
+    $table_name = $wpdb->prefix . 'imjol_forms';
+
+    $sql = "DROP TABLE IF EXISTS $table_name;";
+
+    $wpdb->query($sql);
+}
+
+register_deactivation_hook(__FILE__, 'imjol_drop_database');
+
 
 // Register Top Label Menu
 add_action( 'admin_menu', 'show_all_user_infos' );
